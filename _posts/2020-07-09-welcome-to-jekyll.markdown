@@ -1,28 +1,33 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Monitorear ciclos"
 date:   2020-07-09 13:45:04 -0500
-categories: jekyll update
+categories: rstats
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
-
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
-
-Jekyll also offers powerful support for code snippets:
-
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+Quién no ha corrido alguna vez un código en R que tiene un ciclo `for` que tarda mucho en correr y no se sabe el avance que se tiene. Qué horror, ¿no? Afortunadamente esto se puede resolver de forma sencilla. El siguiente código de `R` creará una función que corre un ciclo for, monitoreando el avance con una barra de progreso y mensajes motivacionales (vaya que son necesarios al programar).
+{% highlight r %}
+prueba <- function(n){
+    mensajes <- c(
+        "Vamos bien",
+        "No existen los acentos",
+        "Sigue jalando",
+        "Saleivale sin problemas"
+    )
+    cat(sprintf('\nUna barra de progreso:\n'))
+    for(i in 1:n){
+        cat(
+            sprintf(
+                '\r[%-25s] %3d%%. %22s',
+                paste(rep('=', 100*i/n/4), collapse = ''),
+                floor(100*i/n),
+                sample(mensajes, 1)
+            )
+        )
+        Sys.sleep(1)
+    }
+    cat('\n')
+}
+prueba(10)
 {% endhighlight %}
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
-
-<script src="/processing.min.js" type="text/javascript"></script>
+Queda pendiente implementarlo como una función tipo `txtProgressBar` y usar `beepr` para señalizar el fin de un ciclo. En lo que lo tengo, dejo una pequeña animación:
 <canvas data-src="/sketches/prueba/prueba.pde"></canvas>
