@@ -75,4 +75,7 @@ void mousePressed() {
   count = 1;
  }
  prob = float(count) / 10;
+ i = 0;
+ a1 = -4;
+ b1 = 4;
 }
