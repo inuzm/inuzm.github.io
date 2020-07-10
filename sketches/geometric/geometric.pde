@@ -4,6 +4,10 @@ float prob = float(count) / 10;
 int x = getpruebas(prob);
 int i = 0;
 float stepx = 600 / float(x + 1);
+int mm = minute();
+int ss = second();
+int hh = hour();
+randomSeed(mm + ss + hh);
 
 void setup() {
   size(600, 300);
