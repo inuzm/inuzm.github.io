@@ -6,6 +6,10 @@ int b1 = 4;
 int[] marcas;
 int count = 5;
 float prob = float(count) / 10;
+int mm = minute();
+int ss = second();
+int hh = hour();
+randomSeed(mm + ss + hh);
 
 void setup() {
   size(600, 200);
