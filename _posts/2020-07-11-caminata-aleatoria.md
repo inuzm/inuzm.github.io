@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Caminatas aleatorias"
-date:   2020-07-10 13:00:00 -0500
+date:   2020-07-11 13:00:00 -0500
 categories: probabilidad
 ---
 
