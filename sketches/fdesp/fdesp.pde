@@ -166,9 +166,9 @@ int rpois(float lambda) {
   int n = 0;
   float fx = exp(-lambda);
   float u = random(1);
-  float aux;
+  float aux = exp(-lambda);
   while (u > fx) {
-    aux = fx * lambda / float(n+1);
+    aux *= lambda / float(n+1);
     fx += aux;
     n++;
   }
