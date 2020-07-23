@@ -214,4 +214,5 @@ void mousePressed() {
   outerloop = 1;
   otroloop = 0;
   cadena = "X(" + otroloop + ") = " + totClients;
+  redraw();
 }

@@ -24,21 +24,30 @@ void draw() {
   fill(255);
 
   String proba = "p = 0." + count;
+  textSize(30);
   text(proba, 100, 50);
 
-  String rvX = "X = " + x;
+  String rvX = "T = " + x;
   text(rvX, 500, 50);
 
   float posx = 0;
   float radio = min(0.9 * 100, 0.9 * stepx);
   noStroke();
-  fill(220, 20, 60);
   for (int j = 0; j < min(i, x); j++) {
     posx += stepx;
     if (j == x-1) {
       fill(41, 171, 135);
+    } else {
+      fill(220, 20, 60);
     }
     ellipse(posx, 200, radio, radio);
+    fill(255);
+    textSize(0.5 * radio);
+    if (j < x-1){
+      text(0, posx, 200);
+    } else {
+      text(1, posx, 200);
+    }
   }
   i++;
 

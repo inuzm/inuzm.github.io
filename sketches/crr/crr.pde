@@ -203,4 +203,5 @@ void mousePressed() {
     ay[i] = mynodo.y;
   }
   resetDraw();
+  redraw();
 }

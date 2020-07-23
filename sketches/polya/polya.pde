@@ -180,4 +180,5 @@ for (int i = 0; i < numBalls; i++) {
   balls.add(new Ball(random(width), 40 + random(360), 40, i, mybcolor, balls));
 }
 outerloop = 0;
+redraw();
 }

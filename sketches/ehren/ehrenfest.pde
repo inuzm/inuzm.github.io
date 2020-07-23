@@ -43,6 +43,7 @@ void draw() {
   line(0, 0, 0, 360);
   line(0, 360, 295, 360);
   fill(255);
+  textSize(30);
   text("A", 15, 375);
   text("B", 625, 375);
   String bolas = "N = " + numBalls;
@@ -162,6 +163,9 @@ class Ball {
       fill(255, 0, 0, 150);
     }
     ellipse(x, y, diameter, diameter);
+    textSize(0.5 * diameter);
+    fill(0);
+    text(id, x, y);
   }
 }
 
@@ -200,4 +204,5 @@ void mousePressed() {
       balls[i] = new Ball(width - random(width/2 - 30), random(360), 40, i, balls);
     }
   }
+  redraw();
 }
