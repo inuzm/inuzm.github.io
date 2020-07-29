@@ -27,7 +27,11 @@ $$
 \mathbb{P}(T^r = n) = \binom{n-1}{r-1} (1-p)^{(n-1)-(r-1)} p^{r-1} \times p = \binom{n-1}{r-1} (1-p)^{n-r} p^r.
 $$
 
-Se dice que la variable aleatoria $T^r$ tiene distribución binomial negativa con parámetros $r$ y $p$ y se denota por $T^r \sim \mathrm{BinNeg}(r, p)$. Observemos que para el caso particular $r = 1$, $T^r \sim \mathrm{Geo}(p)$, por lo que podemos decir que la distribución binomial negativa generaliza a la distribución geométrica. Por otra parte, para $n_1, n_2, \ldots, n_k \geq 1$ enteros es fácil ver que
+Se dice que la variable aleatoria $T^r$ tiene distribución binomial negativa con parámetros $r$ y $p$ y se denota por $T^r \sim \mathrm{BinNeg}(r, p)$. En la siguiente animación se pueden ver simulaciones de variables aleatorias con distribución $\mathrm{BinNeg}(r, 0.5)$ comenzando con $r = 1$, para modificar el valor de $r$ basta hacer clic sobre la animación.
+
+<canvas data-src="/sketches/binneg2/binneg2.pde"></canvas>
+
+Observemos que para el caso particular $r = 1$, $T^r \sim \mathrm{Geo}(p)$, por lo que podemos decir que la distribución binomial negativa generaliza a la distribución geométrica. Por otra parte, para $n_1, n_2, \ldots, n_k \geq 1$ enteros es fácil ver que
 
 $$
 \mathbb{P}(T^1 = n_1, T^2 - T^1 = n_2, \ldots,  T^k - T^{k-1} = n_k) = \prod_{i = 1}^{k} \big( (1-p)^{n_i - 1} p \big).

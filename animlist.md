@@ -5,7 +5,8 @@ permalink: /Animaciones/
 ---
 
 - [Variables aleatorias geométricas](/anim/geom.md)
-- [Binomial-negativa](/anim/binneg.md)
+- [Binomial-negativa](/anim/binneg2.md)
+- [Binomial-negativa alternativa](/anim/binneg.md)
 - [Caminata aleatoria](/anim/caminataalea.md)
 - [Caminata aleatoria con barreras absorbentes](/anim/caminaabsorbe.md)
 - [Caminata aleatoria con barreras reflejantes](/anim/caminarefleja.md)

@@ -1,8 +1,8 @@
 PFont f;
-int numBalls = 1;
-float spring = 0.01;
+int numBalls = 25;
+float spring = 0.1;
 float gravity = 0.1;
-float friction = 0.0;
+float friction = -0.3;
 Ball[] balls = new Ball[numBalls];
 int conteo = 0;
 int[] lado = new int[numBalls];
@@ -17,9 +17,9 @@ void setup() {
       conteo++;
     }
     if (lado[i] == 0) {
-      balls[i] = new Ball(random(width/2 - 30), random(360), 40, i, balls);
+      balls[i] = new Ball(random(width/2 - 30), random(360), 30, i, balls);
     } else {
-      balls[i] = new Ball(width - random(width/2 - 30), random(360), 40, i, balls);
+      balls[i] = new Ball(width - random(width/2 - 30), random(360), 30, i, balls);
     }
   }
   f = createFont("TimesNewRomanPSMT", 30);
@@ -199,9 +199,9 @@ void mousePressed() {
       conteo++;
     }
     if (lado[i] == 0) {
-      balls[i] = new Ball(random(width/2 - 30), random(360), 40, i, balls);
+      balls[i] = new Ball(random(width/2 - 30), random(360), 30, i, balls);
     } else {
-      balls[i] = new Ball(width - random(width/2 - 30), random(360), 40, i, balls);
+      balls[i] = new Ball(width - random(width/2 - 30), random(360), 30, i, balls);
     }
   }
   redraw();
