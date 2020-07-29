@@ -1,5 +1,5 @@
 PFont f;
-int numBalls = 25;
+int numBalls = 2;
 float spring = 0.1;
 float gravity = 0.1;
 float friction = -0.3;
