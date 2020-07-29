@@ -6,6 +6,7 @@ permalink: /Índice/
 
 Probabilidad:
 - [Variables aleatorias geométricas](/_posts/2020-07-10-geometricas.md)
+- [Variables aleatorias binomiales](/_posts/2020-07-30-binomial.md)
 
 Procesos estocásticos:
 - [Caminatas aleatorias](/_posts/2020-07-11-caminata-aleatoria.md)
