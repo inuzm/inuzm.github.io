@@ -170,8 +170,8 @@ void mousePressed() {
  i = 0;
  a1 = -1;
  b1 = 7;
- a2 = -7;
- b2 = 7;
+ a2 = 0;
+ b2 = 10;
  xpart = 30;
  ypart = 300;
  moverx = false;
