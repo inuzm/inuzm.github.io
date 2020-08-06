@@ -15,3 +15,4 @@ permalink: /Animaciones/
 - [Urnas de Pólya](/anim/polya.md)
 - [Cox–Ross–Rubinstein](/anim/crr.md)
 - [Fila de espera](/anim/filadeesp.md)
+- [Proceso de Galton--Watson](/anim/gwhist.md)
