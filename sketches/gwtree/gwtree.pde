@@ -11,6 +11,7 @@ void setup () {
   size(600, 600);
   tree = new ArrayList<GalWat> ();
   GenerateTree();
+  ResetTree();
 }
 
 void draw () {
