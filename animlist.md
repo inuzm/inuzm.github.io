@@ -16,3 +16,4 @@ permalink: /Animaciones/
 - [Cox–Ross–Rubinstein](/anim/crr.md)
 - [Fila de espera](/anim/filadeesp.md)
 - [Proceso de Galton--Watson](/anim/gwhist.md)
+- [Árboles de Galton--Watson](/anim/gwtree.md)
