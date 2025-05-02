@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadena de Eherenfest</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+            // customised options
+            // • auto-render specific keys, e.g.:
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            // • rendering keys, e.g.:
+            throwOnError : false
+            });
+        });
+    </script>
+    <script src="../processing.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Cadena de Eherenfest</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../miscelanea.html">Miscellanea</a></li>
+        <li><a href="../publications.html">Publications and Preprints</a></li>
+        <li><a href="../notes.html">Course Notes</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <p> 
+        La cadena de Eherenfest es uno de los ejemplos básicos de cadenas de Markov. Para describir la cadena supongamos que tenemos $N$ moléculas distribuidas en dos contenedores, $A$ y $B$, sobre las cuales realizaremos experimentos sucesivamente.
+      </p><br />
+
+      <p>
+        En cada experimento se escoge una partícula al azar, de forma uniforme entre todas las partículas, enumeradas de $0$ a $N-1$, y se cambia de contenedor. El valor de la cadena en un tiempo es el número de partículas en el contenedor $A$. Si en un momento dado la cadena está en el estado $k$, entonces el sistema pasará al estado $k+1$ con probabilidad $k/N$ al estado $k-1$ y con probabilidad $1 - k/N$ al estado $k+1$, dependiendo de si es escoge una partícula del contenedor $A$ o del contenedor $B$.
+      </p><br />
+
+      <p>
+        En la siguiente animación se presenta una instancia de esta cadena comenzando con una partícula, es decir $N = 1$. Para agregar partículas, hay que hacer clic sobre la animación, esto añadirá una partícula y reiniciará la cadena. La partícula roja es la que cambia de contenedor.
+      </p><br />
+
+      <center>
+        <canvas data-src="../assets/animations/ehren/ehrenfest.pde"></canvas>
+      </center>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 inuzm.github.io</p>
+  </footer>
+</body>
+</html>
+    

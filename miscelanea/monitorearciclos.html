@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monitorear ciclos en <code>R</code></title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+            // customised options
+            // • auto-render specific keys, e.g.:
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            // • rendering keys, e.g.:
+            throwOnError : false
+            });
+        });
+    </script>
+    <script src="../processing.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/nord.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+  <header>
+    <h1>Monitorear ciclos en <code>R</code></h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../miscelanea.html">Miscellanea</a></li>
+        <li><a href="../publications.html">Publications and Preprints</a></li>
+        <li><a href="../notes.html">Course Notes</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <p> 
+        Quién no ha corrido alguna vez un código en <code>R</code> que tiene un ciclo <code>for</code> que tarda mucho en correr y no se sabe el avance que se tiene. Qué horror, ¿no? Afortunadamente esto se puede resolver de forma sencilla. El siguiente código de <code>R</code> creará una función que corre un ciclo for, monitoreando el avance con una barra de progreso y mensajes motivacionales (vaya que son necesarios al programar).
+      </p><br />
+
+      <pre><code class="language-r">prueba <- function(n){
+    mensajes <- c(
+        "Vamos bien",
+        "No existen los acentos",
+        "Sigue jalando",
+        "Saleivale sin problemas"
+    )
+    cat(sprintf('\nUna barra de progreso:\n'))
+    for(i in 1:n){
+        cat(
+            sprintf(
+                '\r[%-25s] %3d%%. %22s',
+                paste(rep('=', 100*i/n/4), collapse = ''),
+                floor(100*i/n),
+                sample(mensajes, 1)
+            )
+        )
+        Sys.sleep(1)
+    }
+    cat('\n')
+}
+prueba(10)</code></pre><br />
+
+      <p>
+        Ahora sí, con base en el código anterior veamos cómo implementar funciones que hagan la labor de <code>txtProgressBar</code> pero con mensajitos motivacionales y un sonido que nos avise cuando acabe el ciclo. <strong>Nota importante: las siguientes funciones no son robustos y es bien fácil romperlas.</strong> Primero inicializaremos la barra de progreso.
+      </p><br />
+
+      <pre><code class="language-r">progreso <- function(
+    min = 0, max = 1, initial = 0, char = "#", title = "Una barra de progreso",
+    mensajes = c(
+        "Vamos bien",
+        "No existen los acentos",
+        "Sigue jalando",
+        "Saleivale sin problemas"
+    )
+){
+    cat(sprintf('\n%s:\n', title))
+    valor.actual <- initial
+    max.mensaje <- max(nchar(mensajes))
+    ancho.barra <- 80 - 9 - max.mensaje
+    cat(
+        sprintf(
+            paste0('\r[%-', ancho.barra,'s] %3d%%. %', max.mensaje, 's'),
+            paste(
+                rep(char, ancho.barra * (valor.actual - min) / (max - min)),
+                collapse = ''
+            ),
+            floor(100 * (valor.actual - min) / (max - min)),
+            sample(mensajes, 1)
+        )
+    )
+    return(
+        list(
+            min = min, max = max, mensajes = mensajes,
+            valor.actual = valor.actual, max.mensaje = max.mensaje,
+            ancho.barra = ancho.barra, char = char
+        )
+    )
+}</code></pre><br />
+
+      <p>
+        La siguiente función actualiza la barra de progreso.
+      </p><br />
+
+      <pre><code class="language-r">actprogreso <- function(bpb, valor){
+    bpb$valor.actual <- valor
+    cat(
+        sprintf(
+            paste0(
+                '\r[%-', bpb$ancho.barra,'s] %3d%%. %',
+                bpb$max.mensaje, 's'
+            ),
+            paste(
+                rep(
+                    bpb$char,
+                    bpb$ancho.barra *
+                        (bpb$valor.actual - bpb$min)
+                    / (bpb$max - bpb$min)
+                ),
+                collapse = ''
+            ),
+            floor(100 * (bpb$valor.actual - bpb$min) / (bpb$max - bpb$min)),
+            sample(bpb$mensajes, 1)
+        )
+    )
+    return(bpb)
+}</code></pre><br />
+
+      <p>
+        La siguiente función sirve para señalizar que el ciclo terminó. <em>Requiere de <code>beepr</code></em>
+      </p><br />
+
+      <pre><code class="language-r">fprogreso <- function(bpb, sound = 8, title = "Hemos triunfado"){
+    rm(list = as.character(substitute(bpb)), pos = sys.frame(1))
+    cat(sprintf("\n%s\n", title))
+    beepr::beep(sound = sound)
+}
+      </code></pre><br />
+
+      <p>
+        Ahora hay que probar nuestras funciones. Para esto es el siguiente bloque de código.
+      </p>
+
+      <pre><code class="language-r">pruebaciclo <- function(n){
+    bp1 <- progreso(max = n, char = "=")
+    for(i in 1:n){
+        bp1 <- actprogreso(bpb = bp1, valor = i)
+        Sys.sleep(0.5)
+    }
+    fprogreso(bp1)
+}
+pruebaciclo(20)</code></pre><br />
+
+      <p>
+        Para cerrar con todo, les dejo una pequeña animación.
+      </p><br />
+      
+      <center>
+        <canvas data-src="../assets/animations/prueba/prueba.pde"></canvas>
+      </center>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 inuzm.github.io</p>
+  </footer>
+</body>
+</html>
+    
