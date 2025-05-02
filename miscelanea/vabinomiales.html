@@ -42,7 +42,7 @@
     <section>
       <p> 
         Pensemos en que vamos a llevar a cabo un experimento cuyo resultado lo consideraremos como <em>éxito</em> o <em>fracaso</em>, por ejemplo el que salga águila al realizar un volado. 
-        Si definimos $X = 1$ cuando el resultado es éxito y $U = 0$ en otro caso, entonces 
+        Si definimos $U = 1$ cuando el resultado es éxito y $U = 0$ en otro caso, entonces 
         $$
         \mathbb{P}(U = 0) + \mathbb{P}(U = 1) = 1, \notag
         $$
@@ -50,7 +50,7 @@
       </p><br />
 
       <p>
-        Si ahora repetimos el experimento $n \geq 1$ veces, nos podemos preguntar por la cantidad de experimentos que fueron éxitos, denotemos por $X$ a esta cantidad. Observemos además que $X$ puede tomar valores en $\\{0, 1, \ldots, n\\}$. Ahora, $X = j$ si y sólo si $j$ experimentos fueron éxitos y $n-j$ fueron fracasos para lo cual hay $\binom{n}{j}$ formas de suceder; si además la probabilidad de que un experimento resulte éxito es $p \in [0,1]$ y suponemos que los resultados de las repeticiones son independientes entre sí, entonces cada una de las posibilidades de que haya $j$ éxitos y $n-j$ fracasos tienen probabilidad $p^j(1-p)^{n-j}$, de donde
+        Si ahora repetimos el experimento $n \geq 1$ veces, nos podemos preguntar por la cantidad de experimentos que fueron éxitos, denotemos por $X$ a esta cantidad. Observemos además que $X$ puede tomar valores en $\{0, 1, \ldots, n\}$. Ahora, $X = j$ si y sólo si $j$ experimentos fueron éxitos y $n-j$ fueron fracasos para lo cual hay $\binom{n}{j}$ formas de suceder; si además la probabilidad de que un experimento resulte éxito es $p \in [0,1]$ y suponemos que los resultados de las repeticiones son independientes entre sí, entonces cada una de las posibilidades de que haya $j$ éxitos y $n-j$ fracasos tienen probabilidad $p^j(1-p)^{n-j}$, de donde
         $$
         \mathbb{P}(X = j) = \binom{n}{j} p^j (1-p)^{n-j}
         $$
