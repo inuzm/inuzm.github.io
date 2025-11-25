@@ -20,24 +20,54 @@
     </nav>
   </header>
   <main>
-    <section>
-      <p>
-        Here are some of the posters I have presented throughout my PhD:
-      </p>
-    </section>
-    <section>
-      <h2>Academic Interests</h2>
-      <ul>
-        <li>
+    <p>Here are some posters I have presented throughout my PhD. Click any poster to open it.</p>
+
+    <div class="poster-grid">
+    <!-- Add each poster here -->
+    <div class="poster-item" onclick="openPoster('assets/Posters/posterRedMexBioMate.pdf')">
+        <div class="thumb">Poster for Segundo Encuentro RedMexBiomate</div>
+    </div>
+
+    <div class="poster-item" onclick="openPoster('assets/Posters/posterSimposio25.pdf')">
+        <div class="thumb">Poster for XV Simposio de Probabilidad y Procesos Estocásticos</div>
+    </div>
+
+    <div class="poster-item" onclick="openPoster('assets/Posters/mainSSP.pdf')">
+        <div class="thumb">Poster for Seminar on Stochastic Processes 2025</div>
+    </div>
+
+    <div class="poster-item" onclick="openPoster('assets/Posters/posterSimposio23.pdf')">
+        <div class="thumb">Poster for XIV Simposio de Probabilidad y Procesos Estocásticos</div>
+    </div>
+
+    <div class="poster-item" onclick="openPoster('assets/Posters/posterClapem.pdf')">
+        <div class="thumb">Poster for CLAPEM 2023</div>
+    </div>
+
+    <!-- Add more as needed -->
+    </div>
+
+    <!-- Poster viewer -->
+    <div id="viewer" class="viewer hidden">
+    <div class="viewer-content">
+        <button class="close-btn" onclick="closeViewer()">×</button>
         <div class="iframe-container">
-        <iframe
-            src="assets/Posters/posterRedMexBiomate.pdf"
-            title="Segundo Encuentro RedMexBiomate"
-        ></iframe>
+        <iframe id="poster-frame" src="" title="Poster Viewer"></iframe>
         </div>
-        </li>
-      </ul>
-    </section>
+    </div>
+    </div>
+
+    <script>
+    function openPoster(src) {
+    document.getElementById('poster-frame').src = src;
+    document.getElementById('viewer').classList.remove('hidden');
+    }
+
+    function closeViewer() {
+    document.getElementById('viewer').classList.add('hidden');
+    document.getElementById('poster-frame').src = "";
+    }
+    </script>
   </main>
   <footer>
     <p>&copy; 2025 inuzm.github.io</p>
