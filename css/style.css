@@ -73,3 +73,59 @@ code {
   line-height: 1.6;
   padding: 0 3px;
 }
+.email-box {
+  background-color: #9B1D9A; /* Tyrian purple / red-violet */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 1.1em;
+
+  /* animation settings */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.email-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+.email-box a {
+  color: white;
+  text-decoration: none;
+}
+
+.email-box a:hover {
+  text-decoration: underline;
+}
+
+/* Mail icon */
+.mail-icon {
+  font-size: 1.25em;
+}
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  margin: 20px 0;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  border-radius: 12px;
+}
+
