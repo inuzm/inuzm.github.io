@@ -146,7 +146,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   z-index: 9999;
 }
 
@@ -189,9 +189,11 @@ code {
 .iframe-container {
   position: relative;
   width: 100%;
-  padding-top: 141%; /* A0 aspect ratio (1:1.414) */
+  height: 90vh;  /* fits the whole screen height */
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  margin: 20px 0;
 }
 
 .iframe-container iframe {
