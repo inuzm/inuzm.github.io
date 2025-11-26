@@ -107,6 +107,11 @@ code {
 .mail-icon {
   font-size: 1.25em;
 }
+
+/* ============================
+   POSTER VIEWER 
+   ============================ */
+
 /* Poster grid */
 .poster-grid {
   display: grid;
@@ -136,71 +141,299 @@ code {
   font-weight: 600;
 }
 
+/* ============================
+   POSTER VIEWER (same style as notes viewer)
+   ============================ */
 
-/* Viewer overlay */
-.viewer {
+.poster-viewer {
   position: fixed;
-  inset: 0;
-  backdrop-filter: blur(6px);
-  background-color: rgba(0,0,0,0.45);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 3000;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  z-index: 9999;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.viewer.hidden {
+.poster-viewer.hidden {
   display: none;
 }
 
-.viewer-content {
-  position: relative;
-  width: 90%;
-  max-width: 900px;       /* Prevents oversizing */
-  max-height: 90vh;       /* Prevents overflow */
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  overflow: hidden;       /* Ensures iframe stays inside */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-}
-
-/* Close button */
-.close-btn {
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  font-size: 26px;
-  background: none;
+.close-poster-btn {
+  align-self: flex-end;
+  background: #aa44bb;
+  color: white;
   border: none;
+  font-size: 30px;
+  padding: 4px 14px;
+  border-radius: 6px;
   cursor: pointer;
-  color: #444;
-  z-index: 10000;
-  transition: color 0.2s;
+  transition: 0.2s ease;
 }
 
-.close-btn:hover {
-  color: #9B1D9A;
+.close-poster-btn:hover {
+  background: #c96be0;
 }
 
-
-/* Responsive iframe with A0 ratio */
-.iframe-container {
-  position: relative;
+.poster-iframe-container {
+  flex-grow: 1;
   width: 100%;
-  height: 90vh;  /* fits the whole screen height */
+  max-width: 1100px;       /* same as notes viewer */
+  margin: auto;
+  background: white;
+  border-radius: 10px;
   overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  margin: 20px 0;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
-.iframe-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+.poster-iframe-container iframe {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .poster-iframe-container {
+    height: 85vh;
+  }
+}
+
+/* Poster icon */
+.poster-icon {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+  opacity: 0.9;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Hover effect also applies to the icon */
+.poster-item:hover .poster-icon {
+  transform: scale(1.15) rotate(-5deg);
+  opacity: 1;
+}
+
+/* ============================================================
+   COURSE NOTES — MAKE LIST LOOK LIKE PUBLICATIONS PAGE
+   ============================================================ */
+
+/* Main list spacing */
+.notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+/* Individual list items styled like publication entries */
+.note-item {
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #777;        /* Default neutral color */
+  background: #fafafa;
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s;
+  line-height: 1.5;
+}
+
+/* Hover effect similar to publications page */
+.note-item:hover {
+  background: #f0f0f0;
+}
+
+/* Category-colored borders (mirroring poster colors if desired) */
+.note-item.attended { border-color: #2e86de; }
+.note-item.taught   { border-color: #e58e26; }
+.note-item.project  { border-color: #10ac84; }
+
+/* Title style (similar to publications titles) */
+.note-item strong {
+  font-size: 1.05rem;
+}
+
+/* PDF link styling */
+.view-notes {
+  display: inline-block;
+  margin-top: 0.3rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-notes i {
+  margin-right: 6px;
+}
+
+/* Filters styled like publication categories */
+.filters {
+  margin: 1.5rem 0 2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background: #f7f7f7;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+
+.filter-btn:hover {
+  background: #eaeaea;
+}
+
+.filter-btn.active {
+  background: #ddd;
+  border-color: #555;
+}
+
+/* Notes viewer */
+.notes-viewer {
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.notes-viewer.hidden {
+  display: none;
+}
+
+.notes-iframe-container {
+  width: 100%;
+  max-width: 1100px;
+  height: 90%;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.notes-iframe-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.close-notes-btn {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .notes-iframe-container {
+    height: 85vh;
+  }
+}
+
+
+/* FILTER BUTTONS */
+.filter-buttons {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #eee;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+  background: #ddd;
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: #b191ff;
+  color: white;
+  border-color: #8a63f2;
+}
+
+/* PUBLICATION LIST */
+.pub-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.pub-item {
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: #f9f7ff;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+/* COLOR CODING */
+.publication {
+  border-left: 5px solid #3E6DFF; /* Blue */
+}
+
+.preprint {
+  border-left: 5px solid #A259FF; /* Violet */
+}
+
+.talk {
+  border-left: 5px solid #FF8C42; /* Orange */
+}
+
+.pub-item:hover {
+  background: #f0eaff;
+  transform: translateX(6px);
+}
+
+/* LINKS INSIDE ITEMS */
+.pub-item a {
+  color: #5a2cba;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.pub-item a:hover {
+  color: #8c4dff;
+  text-shadow: 0 0 6px #e2d4ff;
+}
+
+/* ICONS */
+.pub-icon {
+  font-size: 1.4rem;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* FILTER ANIMATION */
+.fade {
+  opacity: 1;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.fade:not(.show) {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
 }

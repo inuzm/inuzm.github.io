@@ -6,6 +6,7 @@
   <title>Posters</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <header>
     <h1>Posters</h1>
@@ -19,58 +20,116 @@
       </ul>
     </nav>
   </header>
+
   <main>
     <p>Here are some posters I have presented throughout my PhD. Click any poster to open it.</p>
 
     <div class="poster-grid">
-    <!-- Add each poster here -->
-    <div class="poster-item" onclick="openPoster('assets/Posters/posterRedMexBioMate.pdf')">
+
+      <div class="poster-item" data-pdf="assets/Posters/posterRedMexBioMate.pdf">
+        <div class="poster-icon">📄</div>
         <div class="thumb">Poster for Segundo Encuentro RedMexBiomate</div>
-    </div>
+      </div>
 
-    <div class="poster-item" onclick="openPoster('assets/Posters/posterSimposio25.pdf')">
+      <div class="poster-item" data-pdf="assets/Posters/posterSimposio25.pdf">
+        <div class="poster-icon">📄</div>
         <div class="thumb">Poster for XV Simposio de Probabilidad y Procesos Estocásticos</div>
-    </div>
+      </div>
 
-    <div class="poster-item" onclick="openPoster('assets/Posters/mainSSP.pdf')">
+      <div class="poster-item" data-pdf="assets/Posters/mainSSP.pdf">
+        <div class="poster-icon">📄</div>
         <div class="thumb">Poster for Seminar on Stochastic Processes 2025</div>
-    </div>
+      </div>
 
-    <div class="poster-item" onclick="openPoster('assets/Posters/posterSimposio23.pdf')">
+      <div class="poster-item" data-pdf="assets/Posters/posterSimposio23.pdf">
+        <div class="poster-icon">📄</div>
         <div class="thumb">Poster for XIV Simposio de Probabilidad y Procesos Estocásticos</div>
-    </div>
+      </div>
 
-    <div class="poster-item" onclick="openPoster('assets/Posters/posterClapem.pdf')">
+      <div class="poster-item" data-pdf="assets/Posters/posterClapem.pdf">
+        <div class="poster-icon">📄</div>
         <div class="thumb">Poster for CLAPEM 2023</div>
+      </div>
+
     </div>
 
-    <!-- Add more as needed -->
+    <!-- ================================
+         POPUP POSTER VIEWER
+         ================================ -->
+    <div id="posterViewer" class="poster-viewer hidden">
+      <button class="close-poster-btn">&times;</button>
+      <div class="poster-iframe-container">
+        <iframe id="posterFrame" src="" title="Poster Viewer"></iframe>
+      </div>
     </div>
 
-    <!-- Poster viewer -->
-    <div id="viewer" class="viewer hidden">
-    <div class="viewer-content">
-        <button class="close-btn" onclick="closeViewer()">×</button>
-        <div class="iframe-container">
-        <iframe id="poster-frame" src="" title="Poster Viewer"></iframe>
-        </div>
-    </div>
-    </div>
-
-    <script>
-    function openPoster(src) {
-    document.getElementById('poster-frame').src = src;
-    document.getElementById('viewer').classList.remove('hidden');
-    }
-
-    function closeViewer() {
-    document.getElementById('viewer').classList.add('hidden');
-    document.getElementById('poster-frame').src = "";
-    }
-    </script>
   </main>
+
   <footer>
     <p>&copy; 2025 inuzm.github.io</p>
   </footer>
+
+
+<!-- ================================
+     POSTER VIEWER SCRIPT
+     ================================ -->
+<script>
+let posters = Array.from(document.querySelectorAll('.poster-item'));
+let currentIndex = 0;
+
+function openPosterAt(index) {
+  const pdf = posters[index].dataset.pdf;
+  currentIndex = index;
+  document.getElementById('posterFrame').src = pdf;
+  document.getElementById('posterViewer').classList.remove('hidden');
+}
+
+posters.forEach((item, index) => {
+  item.addEventListener('click', () => openPosterAt(index));
+});
+
+// Close viewer
+document.querySelector('.close-poster-btn').addEventListener('click', () => {
+  document.getElementById('posterViewer').classList.add('hidden');
+  document.getElementById('posterFrame').src = "";
+});
+
+// Close when clicking outside
+document.getElementById('posterViewer').addEventListener('click', (e) => {
+  if (!e.target.closest('.poster-iframe-container') &&
+      !e.target.closest('.close-poster-btn')) {
+    document.getElementById('posterViewer').classList.add('hidden');
+    document.getElementById('posterFrame').src = "";
+  }
+});
+
+// ================================
+// KEYBOARD NAVIGATION
+// ================================
+document.addEventListener('keydown', (e) => {
+  const viewerOpen = !document.getElementById('posterViewer').classList.contains('hidden');
+
+  if (!viewerOpen) return;
+
+  // ESC closes
+  if (e.key === "Escape") {
+    document.getElementById('posterViewer').classList.add('hidden');
+    document.getElementById('posterFrame').src = "";
+  }
+
+  // LEFT ARROW (previous)
+  else if (e.key === "ArrowLeft") {
+    currentIndex = (currentIndex - 1 + posters.length) % posters.length;
+    openPosterAt(currentIndex);
+  }
+
+  // RIGHT ARROW (next)
+  else if (e.key === "ArrowRight") {
+    currentIndex = (currentIndex + 1) % posters.length;
+    openPosterAt(currentIndex);
+  }
+});
+</script>
+
 </body>
 </html>

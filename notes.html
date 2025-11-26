@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Course Notes</title>
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <header>
@@ -19,21 +23,123 @@
       </ul>
     </nav>
   </header>
+
   <main>
     <section>
-      <p>This section includes lecture notes, teaching materials, and supplementary documents for courses I’ve taught or attended. Most of them are in Spanish, and are still subject to changes.</p>
-      <ul>
-        <li><strong>Procesos de Lévy</strong> &ndash; 2025 &ndash; Attended <br /><a href="https://drive.google.com/file/d/1AzjXyoPYBwQF9HlT9vl2n2qPSRfbytwD/view?usp=drive_link">Download PDF</a></li>
-        <li><strong>Árboles aleatorios</strong> &ndash; 2023 &ndash; Attended <br /><a href="https://drive.google.com/file/d/113SZsExmiHFHIX3Jhg4bbcMs7ZSdb50n/view?usp=drive_link">Download PDF</a></li>
-        <li><strong>Teoría asintótica</strong> &ndash; 2023 &ndash; Attended <br /><a href="https://drive.google.com/file/d/1-gpayodKHlVAe8xSASwV2nqTMK0lM3W_/view?usp=drive_link">Download PDF</a></li>
-        <li><strong>Procesos de Markov</strong> &ndash; 2022 &ndash; Attended <br /><a href="https://drive.google.com/file/d/1hZhiuUQQqumL70Xhy7o-Is1JBOd9HyTn/view?usp=drive_link">Download PDF</a></li>
-        <li><strong>Convergencia de procesos de Galton&ndash;Watson</strong> &ndash; 2022 &ndash; Final project (with Uriel Herrera) <br /><a href="https://drive.google.com/file/d/19DkaIfif4OwCWvA-CXzh3Lb-rOivkamH/view?usp=drive_link">Download PDF</a></li>
-        <li><strong>Teoría de la medida</strong> &ndash; 2020 &ndash; Taught (with Carlos Chávez) <br /><a href="https://drive.google.com/file/d/1WZnt61oy-9hQ_pF_QtNOJHe_eZipTHrM/view?usp=drive_link">Download PDF</a></li>
+
+      <p>This section includes lecture notes, teaching materials, and supplementary documents for courses I've taught or attended. Most are in Spanish and still subject to updates.</p>
+
+      <!-- FILTER BUTTONS -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="attended">Attended</button>
+        <button class="filter-btn" data-filter="taught">Taught</button>
+        <button class="filter-btn" data-filter="project">Projects</button>
+      </div>
+
+      <ul class="notes-list">
+        <li class="note-item attended">
+          <strong>Procesos de Lévy</strong> – 2025 – Attended
+          <br>
+          <a class="view-notes" href="assets/notes/LevyNotes.pdf">
+            <i class="fa-solid fa-file-pdf"></i> View PDF
+          </a>
+        </li>
+
+        <li class="note-item attended">
+          <strong>Árboles aleatorios</strong> – 2023 – Attended
+          <br>
+          <a class="view-notes" href="assets/notes/arboles.pdf">
+            <i class="fa-solid fa-file-pdf"></i> View PDF
+          </a>
+        </li>
+
+        <li class="note-item attended">
+          <strong>Teoría asintótica</strong> – 2023 – Attended
+          <br>
+          <a class="view-notes" href="assets/notes/asintotica.pdf">
+            <i class="fa-solid fa-file-pdf"></i> View PDF
+          </a>
+        </li>
+
+        <li class="note-item attended">
+          <strong>Procesos de Markov</strong> – 2022 – Attended
+          <br>
+          <a class="view-notes" href="assets/notes/markovProc.pdf">
+            <i class="fa-solid fa-file-pdf"></i> View PDF
+          </a>
+        </li>
+
+        <li class="note-item project">
+          <strong>Convergencia de procesos de Galton–Watson</strong> – 2022 – Final Project
+          <br>
+          <a class="view-notes" href="assets/notes/p_fin.pdf">
+            <i class="fa-solid fa-file-pdf"></i> View PDF
+          </a>
+        </li>
+
+        <li class="note-item taught">
+          <strong>Teoría de la medida</strong> – 2020 – Taught
+          <br>
+          <a class="view-notes" href="assets/notes/notas-medida.pdf">
+            <i class="fa-solid fa-file-pdf"></i> View PDF
+          </a>
+        </li>
       </ul>
     </section>
+
+    <!-- RESPONSIVE VIEWER -->
+    <div id="notes-viewer" class="notes-viewer hidden">
+      <button class="close-notes-btn">×</button>
+      <div class="notes-iframe-container">
+        <iframe id="notes-iframe" src="" frameborder="0"></iframe>
+      </div>
+    </div>
+
   </main>
+
   <footer>
     <p>&copy; 2025 inuzm.github.io</p>
   </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.note-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        items.forEach(item => {
+          item.style.display =
+            filter === 'all' || item.classList.contains(filter)
+              ? 'block'
+              : 'none';
+        });
+      });
+    });
+
+    // Viewer
+    const viewer = document.getElementById('notes-viewer');
+    const iframe = document.getElementById('notes-iframe');
+    const closeBtn = document.querySelector('.close-notes-btn');
+
+    document.querySelectorAll('.view-notes').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        iframe.src = link.href;
+        viewer.classList.remove('hidden');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      viewer.classList.add('hidden');
+      iframe.src = "";
+    });
+  </script>
 </body>
 </html>

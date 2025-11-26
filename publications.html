@@ -6,6 +6,7 @@
   <title>Publications, Preprints, and Selected Talks</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <header>
     <h1>Publications, Preprints, and Selected Talks</h1>
@@ -19,47 +20,106 @@
       </ul>
     </nav>
   </header>
+
   <main>
+
+    <p>Here are links to my publications, preprints, and selected talks:</p>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all" onclick="filterItems('all')">All</button>
+      <button class="filter-btn" data-filter="publication" onclick="filterItems('publication')">Publications</button>
+      <button class="filter-btn" data-filter="preprint" onclick="filterItems('preprint')">Preprints</button>
+      <button class="filter-btn" data-filter="talk" onclick="filterItems('talk')">Talks</button>
+    </div>
+
+    <!-- PUBLICATIONS LIST -->
     <section>
-      <p>Here are links to my current publications, preprints (with links to arXiv) available online, and some selected talks:</p>
-      <h1>Publications</h1>
-      <ul>
-        <li>
+      <ul class="pub-list">
+
+        <!-- PUBLICATION -->
+        <li class="pub-item publication fade show">
+          <span class="pub-icon">📘</span>
           I. Nuñez, J.-L. Pérez<br />
-          <a href="https://link.springer.com/chapter/10.1007/978-3-031-96118-2_11">The frequency process in a non-neutral two-type continuous-state branching process with competition and its genealogy</a><br />
-          XIV Symposium on Probability and Stochastic Processes. Progress in Probability, vol 81. Birkhäuser, Cham. pp. 241-275.<br />
+          <a href="https://link.springer.com/chapter/10.1007/978-3-031-96118-2_11">
+            The frequency process in a non-neutral two-type continuous-state branching process with competition and its genealogy
+          </a><br />
+          XIV Symposium on Probability and Stochastic Processes, Progress in Probability, vol. 81, pp. 241–275.<br />
           <a href="https://arxiv.org/abs/2406.04255">Preprint on arXiv</a>
         </li>
-        <li>
+
+        <!-- PUBLICATION -->
+        <li class="pub-item publication fade show">
+          <span class="pub-icon">📘</span>
           A. González Casanova, I. Nuñez, J.-L. Pérez<br />
-          <a href="https://projecteuclid.org/journals/electronic-communications-in-probability/volume-29/issue-none/Alpha-stable-branching-and-beta-frequency-processes-beyond-the-IID/10.1214/23-ECP570.full">Alpha-stable branching and beta-frequency processes, beyond the IID assumption</a><br />
-          Electron. Commun. Probab. 29: 1-12 (2024). DOI: 10.1214/23-ECP570<br />
+          <a href="https://projecteuclid.org/journals/electronic-communications-in-probability/volume-29/issue-none/Alpha-stable-branching-and-beta-frequency-processes-beyond-the-IID/10.1214/23-ECP570.full">
+            Alpha-stable branching and beta-frequency processes, beyond the IID assumption
+          </a><br />
+          Electron. Commun. Probab. 29: 1–12 (2024).<br />
           <a href="https://arxiv.org/abs/2303.05477">Preprint on arXiv</a>
         </li>
-        <li>
+
+        <!-- PUBLICATION -->
+        <li class="pub-item publication fade show">
+          <span class="pub-icon">📘</span>
           H. Contreras-Peruyero, I. Nuñez, M. Vazquez-Rosas-Landa, D. Santana-Quinteros, A. Pashkov, M. E. Carranza-Barragán, R. Perez-Estrada, S. Guerrero-Flores, E. Balanzario, V. Muñiz Sánchez, M. Nakamura, L. L. Ramírez-Ramírez, N. Sélem-Mojica<br />
-          <a href="https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2024.1449461/full">CAMDA 2023: finding patterns in urban microbiomes</a><br />
-          Front. Genet., 24 November 2024. Sec. Computational Genomics. Volume 15 - 2024 | https://doi.org/10.3389/fgene.2024.1449461<br />
-          <a href="https://www.biorxiv.org/content/10.1101/2024.09.26.614772v1.abstract">Preprint on biorXiv</a></li>
-      </ul>
-      <h1>Preprints</h1>
-      <ul>
-        <li>
-          A. González Casanova, N. Kurt, I. Nuñez, J.-L. Pérez<br />
-          <a href="https://arxiv.org/abs/2511.05435">Partially exchangeable Markov chains and characterisation of multitype Lambda-coalescents</a>
+          <a href="https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2024.1449461/full">
+            CAMDA 2023: finding patterns in urban microbiomes
+          </a><br />
+          Front. Genet., Vol. 15 (2024).<br />
+          <a href="https://www.biorxiv.org/content/10.1101/2024.09.26.614772v1.abstract">Preprint on bioRxiv</a>
         </li>
-        <li>
+
+        <!-- PREPRINT -->
+        <li class="pub-item preprint fade show">
+          <span class="pub-icon">📄</span>
           A. González Casanova, N. Kurt, I. Nuñez, J.-L. Pérez<br />
-          <a href="https://arxiv.org/abs/2501.00329">Multitype Λ-coalescents and continuous state branching processes</a>
+          <a href="https://arxiv.org/abs/2511.05435">
+            Partially exchangeable Markov chains and characterisation of multitype Lambda-coalescents
+          </a>
         </li>
+
+        <!-- PREPRINT -->
+        <li class="pub-item preprint fade show">
+          <span class="pub-icon">📄</span>
+          A. González Casanova, N. Kurt, I. Nuñez, J.-L. Pérez<br />
+          <a href="https://arxiv.org/abs/2501.00329">
+            Multitype Λ-coalescents and continuous state branching processes
+          </a>
+        </li>
+
+        <!-- TALK -->
+        <li class="pub-item talk fade show">
+          <span class="pub-icon">🎤</span>
+          Selected talks will be added soon.
+        </li>
+
       </ul>
-      <br />
-      <h1>Selected talks:</h1>
-      <center><h1>Under construction</h1></center>
     </section>
+
   </main>
+
   <footer>
     <p>&copy; 2025 inuzm.github.io</p>
   </footer>
+
+  <!-- FILTER SCRIPT -->
+  <script>
+    function filterItems(category) {
+      const items = document.querySelectorAll('.pub-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn =>
+        btn.classList.toggle('active', btn.dataset.filter === category)
+      );
+
+      items.forEach(item => {
+        const show = category === "all" || item.classList.contains(category);
+        if (show) item.classList.add("show");
+        else item.classList.remove("show");
+      });
+    }
+  </script>
+
 </body>
 </html>
