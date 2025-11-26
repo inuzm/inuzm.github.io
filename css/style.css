@@ -437,3 +437,118 @@ code {
   overflow: hidden;
   transform: translateY(-10px);
 }
+
+/* ==============================
+   MISCELLANEA LIST STYLING
+   ============================== */
+
+.misc-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.misc-item {
+  background: white;
+  padding: 12px 16px;
+  margin: 10px 0;
+  border-left: 6px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.misc-item a {
+  text-decoration: none;
+  color: #004080;
+  font-weight: bold;
+}
+
+.misc-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+}
+
+.misc-icon {
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+/* Category Colors */
+.misc-icon.notes { color: #3a7; }
+.misc-icon.rv    { color: #c63; }
+.misc-icon.mc    { color: #339; }
+
+.misc-item.notes { border-color: #3a7; }
+.misc-item.anim-rv { border-color: #c63; }
+.misc-item.anim-mc { border-color: #339; }
+
+/* ------------------------- */
+/*   MISCELLANEA FILTERS     */
+/* ------------------------- */
+
+.misc-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.misc-filter-btn {
+  padding: 6px 14px;
+  border: 2px solid #888;
+  border-radius: 8px;
+  background: #f8f8f8;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.misc-filter-btn:hover {
+  transform: scale(1.08);
+  background: #eee;
+}
+
+.misc-filter-btn.active {
+  border-color: #333;
+  background: #ddd;
+  font-weight: bold;
+}
+
+/* Items */
+.misc-item {
+  margin: 6px 0;
+  padding: 6px;
+  border-left: 4px solid transparent;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.35s ease;
+}
+
+.misc-item .icon {
+  margin-right: 6px;
+  opacity: 0.75;
+}
+
+.misc-visible {
+  opacity: 1;
+  max-height: 200px;
+  padding-left: 10px;
+}
+
+/* Category colors */
+.misc-item.notes { border-color: #3178c6; }      /* Blue */
+.misc-item.anim { border-color: #9c27b0; }       /* Purple */
+.misc-item.rv { border-color: #388e3c; }         /* Green */
+.misc-item.rw { border-color: #ff9800; }         /* Orange */
+.misc-item.markov { border-color: #d32f2f; }     /* Red */
+
+/* Hover animation */
+.misc-item a {
+  transition: 0.25s ease;
+}
+
+.misc-item:hover a {
+  margin-left: 4px;
+  color: #000;
+}
