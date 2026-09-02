@@ -552,3 +552,16 @@ code {
   margin-left: 4px;
   color: #000;
 }
+.gif-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.simulation-gif {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
